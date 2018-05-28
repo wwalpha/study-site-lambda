@@ -1,0 +1,9 @@
+{
+  "yaml.schemas": {
+    "http://json.schemastore.org/swagger-2.0": [
+      "swg.yaml",
+      "swg.yml"
+    ]
+  },
+  "yaml.validate": true
+}

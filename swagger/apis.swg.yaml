@@ -1,0 +1,154 @@
+swagger: '2.0'
+info:
+  title: 'XXX'
+  version: '1.0.0'
+produces:
+  - application/json
+consumes:
+  - application/json
+definitions:
+  # ユーザ情報
+  User:
+    type: object
+    properties:
+      userId:
+        description: ユーザID
+        type: string
+      pageOffset:
+        description: １ページの項目数
+        type: integer
+      dayLimit:
+        description: １日の学習上限
+        type: integer
+  # 単語情報
+  Word:
+    description: 単語情報
+    properties:
+      id:
+        type: object
+        properties:
+          wordNo:
+            description: 単語No
+            type: integer
+          userId:
+            description: ユーザID
+            type: string
+      target:
+        description: 使ってる？
+        type: string
+      category:
+        description: カテゴリー
+        type: string
+      word:
+        description: 単語
+        type: string
+      pronounce:
+        description: 発音
+        type: string
+      vocabulary:
+        description: 語彙
+        type: string
+      nextTime:
+        description: 次回学習日時
+        type: string
+      studyTime:
+        description: 学習日
+        type: string
+      times:
+        description: 学習回数
+        type: integer
+      favorite:
+        description: お気に入り
+        type: string
+      sound:
+        description: 音声のURL
+        type: string
+
+paths:
+  /test:
+    get:
+      responses:
+        200:
+          description: for /test
+          schema:
+            type: string
+
+  # ユーザ一覧
+  /users:
+    get:
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfPersons
+            type: array
+            items:
+              $ref: '#definitions/User'
+
+  /users/{userId}:
+    get:
+      summary: ユーザ情報返却
+      parameters:
+        - in: path
+          name: userId
+          type: string
+          required: true
+      responses:
+        200:
+          schema:
+            $ref: '#definitions/User'
+          description: Ret value of User
+
+  /{userId}/{type}/nextpage:
+    get:
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          type: string
+        - in: path
+          name: type
+          type: string
+          required: true
+      responses:
+        200:
+          description: next page's words
+          schema:
+            type: array
+            items:
+              $ref: '#definitions/Word'
+
+  # 学習状況保存
+  /{userId}/save:
+    post:
+      description: 学習状況保存
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          type: string
+        - in: body
+          name: entityList
+          schema:
+            type: array
+            $ref: '#definitions/Word'
+      responses:
+        200:
+          description: success
+
+  /{userId}/reset:
+    post:
+      description: 学習状況リセット
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          type: string
+        - in: body
+          name: entityList
+          schema:
+            type: array
+            $ref: '#definitions/Word'
+      responses:
+        200:
+          description: success
