@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: Sample
+Resources:
+  UserList:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: dist/UserList.js
+      Handler: UserList
+      Runtime: nodejs8.10
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: get
+  GetUser:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: dist/GetUser.js
+      Handler: GetUser
+      Runtime: nodejs8.10
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /users/{userId}
+            Method: get
+
