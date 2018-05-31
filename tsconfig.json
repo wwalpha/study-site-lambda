@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": false,
+    "lib": [
+      "es5",
+      "es6",
+      "es2015.promise"
+    ],
+    "removeComments": true,
+    "allowJs": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false
+  },
+  "include": [
+    "functions/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
