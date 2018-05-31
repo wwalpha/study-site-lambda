@@ -17,7 +17,7 @@
     "allowUnusedLabels": false
   },
   "include": [
-    "functions/**/*.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules"

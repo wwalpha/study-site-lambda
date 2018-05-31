@@ -3,6 +3,10 @@
     "http://json.schemastore.org/swagger-2.0": [
       "swg.yaml",
       "swg.yml"
+    ],
+    "https://raw.githubusercontent.com/awslabs/serverless-application-model/develop/samtranslator/validator/sam_schema/schema.json": [
+      "sam.yaml",
+      "sam.yml"
     ]
   },
   "yaml.validate": true
