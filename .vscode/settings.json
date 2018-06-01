@@ -9,5 +9,10 @@
       "sam.yml"
     ]
   },
-  "yaml.validate": true
+  "yaml.validate": true,
+  "editor.formatOnSave": true,
+  "tslint.autoFixOnSave": true,
+  "tslint.jsEnable": true,
+  "tslint.enable": true,
+  "tslint.run": "onSave"
 }

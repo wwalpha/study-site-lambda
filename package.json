@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "aws-sdk": "^2.247.1"
+    "aws-sdk": "^2.247.1",
+    "mysql": "^2.15.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.5",
