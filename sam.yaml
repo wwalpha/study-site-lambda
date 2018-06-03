@@ -2,28 +2,22 @@ AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
 Description: Sample
 Resources:
+  Words:
+    Type: AWS::Serverless::SimpleTable
   UserList:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: dist/UserList.js
-      Handler: UserList
+      CodeUri: build/words
+      Handler: GetWordList.handler
       Runtime: nodejs8.10
+      Policies: AmazonDynamoDBFullAccess
+      Timeout: 10
       Events:
         GetResource:
           Type: Api
           Properties:
-            Path: /users
+            Path: /{userId}/words
             Method: get
-  GetUser:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: dist/GetUser.js
-      Handler: GetUser
-      Runtime: nodejs8.10
-      Events:
-        GetResource:
-          Type: Api
-          Properties:
-            Path: /users/{userId}
-            Method: get
-
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Words
