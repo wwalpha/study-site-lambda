@@ -19,8 +19,6 @@ const scan = (params: DynamoDB.QueryInput, db: DynamoDB) => new Promise((resolve
     params.ExclusiveStartKey = data.LastEvaluatedKey;
     // continue query
     scan(params, db);
-
-    return;
   }
 
   // query finish
