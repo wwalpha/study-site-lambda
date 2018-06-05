@@ -1,1 +1,1 @@
-aws dynamodb list-tables --endpoint-url %ENDPOINT%
+aws dynamodb scan --table-name %1 --endpoint-url %ENDPOINT%

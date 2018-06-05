@@ -6,7 +6,8 @@
   "scripts": {
     "api": "sam local start-api -t sam.yaml",
     "db": "%Dynamodb%/start.bat",
-    "t": "webpack -w --config ./webpack/words/GetWordList.config.js",
+    "build:getnewlist": "webpack -w --config ./webpack/words/GetNewList.js",
+    "t": "webpack -w --config ./webpack/words/UpdateWord.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

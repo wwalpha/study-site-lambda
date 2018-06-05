@@ -7,11 +7,8 @@ const params = (userId: string, word: string): DynamoDB.DocumentClient.UpdateIte
     Word: word,
   },
   UpdateExpression: 'SET IsUsing = :isUsing',
-  AttributeUpdates: {
-    ':isUsing': {
-      Action: 'PUT',
-      Value: true,
-    },
+  ExpressionAttributeValues: {
+    ':isUsing': true,
   },
   ReturnConsumedCapacity: 'TOTAL',
 });

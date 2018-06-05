@@ -12,10 +12,9 @@ const params = (userId: string, nextTime: string): DynamoDB.DocumentClient.Query
     ':userId': userId,
     ':nextTime': nextTime,
     ':times_0': 0,
-    ':times_9999': 9999,
   },
   ScanIndexForward: false,
-  FilterExpression: 'Times = :times_0 OR Times = :times_9999',
+  FilterExpression: 'Times <> :times_0',
   Select: 'ALL_ATTRIBUTES',
   ReturnConsumedCapacity: 'TOTAL',
 });
