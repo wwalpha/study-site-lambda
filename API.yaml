@@ -1,0 +1,64 @@
+Words:
+  New: #新規モード
+    # 新規単語
+    Pattern1:
+      Words: #Table
+        LSI: lsiIdx1
+        Key:
+          UserId: userId
+          NextTime: 99999999
+        Limit: 49
+    # 復習から再学習の新規単語
+    Pattern2:
+      Words: #Table
+        LSI: lsiIdx1
+        Key:
+          UserId: userId
+          NextTime: < Now
+        Filter:
+          - Times: 0
+        Sort: 'NextTime DESC'
+    # 学習中新規単語
+    Pattern3:
+      Words: #Table
+        LSI: lsiIdx2
+        Key:
+          UserId: userId
+          IsUsing: true
+        Filter:
+          - Mode: 1
+  Review:
+    # 復習単語
+    Pattern1:
+      LSI: lsiIdx1
+      Key:
+        UserId: userId
+        NextTime: < Now
+      Filter:
+        - Times: <> 0
+      Sort: 'NextTime DESC'
+    # 学習中新規単語
+    Pattern2:
+      Words: #Table
+        LSI: lsiIdx2
+        Key:
+          UserId: userId
+          IsUsing: true
+        Filter:
+          Mode: 2
+Table:
+  Words:
+    Key:
+      - UserId: Hash
+      - NextTime: Range
+    LSI:
+      lsiIdx1:
+        - UserId: Hash
+        - NextTime: Range
+      lsiIdx2:
+        - UserId: Hash
+        - isUsing: Range
+    Items:
+      - StudyTime
+      - Times
+      - Mode
